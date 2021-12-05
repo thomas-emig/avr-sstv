@@ -1,0 +1,14 @@
+bild aufnehmen:
+	- WEN high
+	- einen VYSNC high pulse abwarten
+	- beim zweiten VSYNC high pulse WEN low ziehen
+
+           start
+             ↓
+WEN     _____/¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\________
+                                     ↑
+VSYNC   __________/¯¯¯\______________/¯¯¯\_____
+
+
+	- danach ist bild ab adresse 0 im fifo 480 zeilen mal 640 pixel (je zwei byte pro pixel)
+

@@ -1,0 +1,50 @@
+Camera module OV7670
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+ov header    description                dir        comment                                                     avr pin        arduino pin
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+3v3          power - 3,3V               -          -                                                           -              3v3
+gnd          gnd   - GND                -          -                                                           -              gnd
+sioc         scl                        input      -                                                           PC5            AD5/SCL
+siod         sda                        in/out     -                                                           PC4            AD4/SDA
+vsync        ov vertical sync signal    output     high during frame sync (between pictures)                   PC0            AD0
+href         ov href                    output     high during row data output (during line output)            PD1            IO1
+                                                   -> connect with 1k Ohm to avoid short during programming
+d7           data line 7                output     -                                                           PD7            IO7
+d6           data line 6                output     -                                                           PD6            IO6
+d5           data line 5                output     -                                                           PD5            IO5
+d4           data line 4                output     -                                                           PD4            IO4
+d3           data line 3                output     -                                                           PD3            IO3
+d2           data line 2                output     -                                                           PD2            IO2                           
+d1           data line 1                output     -                                                           PC3            AD3
+d0           data line 0                output     -                                                           PB2            IO10
+rst          ov reset                   input      0: normal mode 1: reset all registers                       -              -
+                                                   -> test: pin connected to 0: module doesnt work anymore
+                                                   -> leave open
+pwdn         ov power down              input      0: normal mode 1: power down                                -              -
+                                                   -> leave open
+str          ov led control             output     -                                                           -              -
+rck          fifo read clock            input      falling: data change rising: data stable                    PC1            AD1
+wr           fifo write enable          input      0: write disable 1: write enable/NANDed with href           PC2            AD2
+oe           fifo output enable         input      0: output active 1: output inactive                         -              -
+                                                   -> leave open
+wrst         fifo write reset           input      0: reset 1: normal - not internally connected to VSYNC!     PD0            IO0
+                                                   -> connect this pin to inverted vsync
+rrst         fifo read reset            input      0: reset 1: normal                                          PB0            IO8
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+DDS module AD9850
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+AD9850 pin    Arduino pin    AVR pin        SPI pin function     Remarks
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Reset         IO12           PB4            MISO                 with pull-down resistor
+FQ_UD         IO9            PB1            –                    –
+W_CLK         IO13           PB5            SCK                  originally connected to PIN10 (PB2)
+D7            IO11           PB3            MOSI                 –
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+RS232 - only for debug purposes
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+avr pin        arduino pin        RS232 pin
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+PD0            IO0                RxD
+PD1            IO1                TxD
